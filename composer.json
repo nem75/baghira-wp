@@ -1,0 +1,15 @@
+{
+    "name": "nem75/baghira-wp",
+    "description": "Baghir Tribal Wordpress site",
+    "type": "project",
+    "require": {
+        "johnpbloch/wordpress": "^4.8"
+    },
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Jens Bremmekamp",
+            "email": "jens.bremmekamp@gmail.com"
+        }
+    ]
+}
