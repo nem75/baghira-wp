@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  php:
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    image: nem75/baghira-wp_php:base

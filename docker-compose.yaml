@@ -1,0 +1,54 @@
+version: '2'
+
+services:
+  db:
+    image: nem75/baghira-wp_db
+    environment:
+      MYSQL_USER: "${DB_USER}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+    volumes:
+      - "dbdata:/var/lib/mysql"
+      - "./db:/dumps"
+    restart: always
+
+  php:
+    build:
+      context: ./app
+    image: nem75/baghira-wp_app
+    environment:
+      DB_USER: "${DB_USER}"
+      DB_PASSWORD: "${DB_PASSWORD}"
+      DB_NAME: "${DB_NAME}"
+      DB_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+      DB_HOST: "${DB_HOST}"
+      DB_CHARSET: "${DB_CHARSET}"
+      AUTH_KEY: "${AUTH_KEY}"
+      SECURE_AUTH_KEY: "${SECURE_AUTH_KEY}"
+      LOGGED_IN_KEY: "${LOGGED_IN_KEY}"
+      NONCE_KEY: "${NONCE_KEY}"
+      AUTH_SALT: "${AUTH_SALT}"
+      SECURE_AUTH_SALT: "${SECURE_AUTH_SALT}"
+      LOGGED_IN_SALT: "${LOGGED_IN_SALT}"
+      NONCE_SALT: "${NONCE_SALT}"
+    volumes:
+      - sock:/sock
+      - app:/app
+    restart: always
+
+  ws:
+    image: nem75/baghira-wp_ws
+    expose:
+      - "80"
+    environment:
+      VIRTUAL_HOST: "${VIRTUAL_HOST}"
+    volumes:
+      - sock:/sock
+      - app:/app
+    restart: always
+
+volumes:
+  app:
+  dbdata:
+  sock:

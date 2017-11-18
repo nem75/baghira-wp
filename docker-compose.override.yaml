@@ -1,0 +1,34 @@
+version: '2'
+
+services:
+  db:
+    build:
+      context: ./db
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: ""
+    ports:
+      - "3306:3306"
+    restart: "no"
+
+  php:
+    build:
+      context: ./php
+      dockerfile: Dockerfile.dev
+    image: nem75/baghira-wp_php:dev
+    volumes:
+      - ./app:/app
+      - ${HOME}/.ssh:/root/.ssh
+    restart: "no"
+
+  ws:
+    build:
+      context: ./ws
+    environment:
+      VIRTUAL_HOST: ""
+    ports:
+      - "80:80"
+    volumes:
+      - ./app:/app
+    restart: "no"
+
