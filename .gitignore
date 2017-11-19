@@ -2,3 +2,9 @@
 /.env
 /app/wordpress/wp-content/upgrade/
 /app/wordpress/wp-content/uploads/
+
+# /app/wordpress/wp-content/backup-db/
+# /app/wordpress/wp-content/backups/
+# /app/wordpress/wp-content/blogs.dir/
+# /app/wordpress/wp-content/cache/
+# /app/wordpress/wp-content/wp-cache-config.php
