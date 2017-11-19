@@ -1,2 +1,4 @@
 /app/vendor/
 /.env
+/app/wordpress/wp-content/upgrade/
+/app/wordpress/wp-content/uploads/
